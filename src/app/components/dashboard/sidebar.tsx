@@ -73,8 +73,12 @@ const AppSidebar = () => {
         <SidebarGroup>
           <div className="flex justify-between">
             <div className="flex flex-row space-x-2">
-              <div className="bg-gradient-to-tr from-red-400 to-orange-400 text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <SquareDashedMousePointer className="size-6" />
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg border border-border bg-card overflow-hidden">
+                <img 
+                  src="/varityweb.png" 
+                  alt="Logo" 
+                  className="size-full object-contain"
+                />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">Varityweb</span>
