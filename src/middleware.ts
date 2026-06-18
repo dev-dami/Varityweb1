@@ -26,6 +26,11 @@ export default async function middleware(req: NextRequest) {
   const isLocalhost = hostname.includes("localhost");
   const baseDomain = isLocalhost ? "localhost:3000" : rootDomain;
 
+  // Redirect www.baseDomain to baseDomain for SEO canonicalization and to prevent 404
+  if (hostname === `www.${baseDomain}`) {
+    return NextResponse.redirect(new URL(`${url.protocol}//${baseDomain}${path}${url.search}`));
+  }
+
   // Handle editor subdomain
   if (hostname === `editor.${baseDomain}`) {
     if (!sessionToken && !isAuthPage) {
