@@ -84,6 +84,9 @@ model Page {
   content      String?
   subdomain    String  @unique
   posts        BlogPost[]
+  collections  Collection[]
+  products     Product[]
+  orders       Order[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -105,4 +108,72 @@ model BlogPost {
 
   @@unique([pageId, slug])
   @@map("blog_post")
+}
+
+model Collection {
+  id        String   @id @default(cuid())
+  pageId    String
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  name      String   // e.g., "Properties", "Shoes"
+  slug      String   // e.g., "properties"
+  fields    Json     // Field schema definition, e.g., { "price": "number", "location": "text" }
+  items     CollectionItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([pageId, slug])
+  @@map("collection")
+}
+
+model CollectionItem {
+  id           String     @id @default(cuid())
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  data         Json       // e.g., { "location": "Lekki, Lagos", "price": 75000000 }
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@map("collection_item")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  pageId      String
+  page        Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  price       Float
+  image       String?
+  stock       Int      @default(0)
+  orderItems  OrderItem[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("product")
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  pageId        String
+  page          Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  customerName  String
+  customerEmail String
+  totalAmount   Float
+  status        String   @default("pending") // pending, paid, shipped, cancelled
+  items         OrderItem[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("order")
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  quantity  Int
+
+  @@map("order_item")
 }
