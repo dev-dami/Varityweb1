@@ -17,6 +17,7 @@ export default async function middleware(req: NextRequest) {
 
   const sessionToken =
     req.cookies.get("better-auth.session_token")?.value ||
+    req.cookies.get("__Secure-better-auth.session_token")?.value ||
     req.cookies.get("__secure-better-auth.session_token")?.value;
 
   const isAuthPage = path === "/login" || path === "/signup";

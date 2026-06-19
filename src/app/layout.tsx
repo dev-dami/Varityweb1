@@ -31,14 +31,17 @@ export default function RootLayout({
         >
           {children}
           <Toaster />
-          {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL && (
-            <Script
-              defer
-              src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
-              data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-              strategy="lazyOnload"
-            />
-          )}
+          {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL &&
+            process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL !== "undefined" &&
+            process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL !== "null" &&
+            process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL.trim() !== "" && (
+              <Script
+                defer
+                src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+                data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+                strategy="lazyOnload"
+              />
+            )}
           <SpeedInsights />
         </ThemeProvider>
       </body>

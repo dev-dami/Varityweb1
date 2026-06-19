@@ -33,12 +33,17 @@ async function Page({ params }: { params: Promise<{ domain: string }> }) {
 
   return (
     <div>
-      <Script
-        defer
-        src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
-        data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-        data-tag={domain}
-      />
+      {process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL &&
+        process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL !== "undefined" &&
+        process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL !== "null" &&
+        process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL.trim() !== "" && (
+          <Script
+            defer
+            src={process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL}
+            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+            data-tag={domain}
+          />
+        )}
       <Suspense fallback={<LoadingState />}>
         <EditorProvider siteDetails={response.site} siteId={response.site.id}>
           <SiteEditor siteId={response.site.id} liveMode />
