@@ -61,7 +61,7 @@ const initialEditorState: EditorState["editor"] = {
     styles: {},
     type: null,
     category: null,
-  },
+  } as unknown as EditorElement,
   device: "Desktop",
   previewMode: false,
   liveMode: false,
@@ -253,14 +253,14 @@ const editorReducer = (
         ...state,
         editor: {
           ...state.editor,
-          selectedElement: action.payload.elementDetails || {
+          selectedElement: (action.payload.elementDetails || {
             id: "",
             content: [],
             name: "",
             styles: {},
             type: null,
             category: null,
-          },
+          }) as unknown as EditorElement,
         },
         history: {
           ...state.history,

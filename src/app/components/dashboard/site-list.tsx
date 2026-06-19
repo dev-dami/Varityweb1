@@ -3,7 +3,7 @@ import NewSiteModal from "./new-site-modal";
 import { db } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import PageItem from "./site-item";
+import SiteListClient from "./site-list-client";
 
 async function SiteList() {
   const session = await auth.api.getSession({
@@ -21,19 +21,20 @@ async function SiteList() {
       <div className="container flex flex-col items-center mx-auto">
         <div className="flex flex-col w-full max-w-4xl space-y-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Sites</h1>
+            <h1 className="text-3xl font-bold tracking-tight">My Sites</h1>
             <NewSiteModal />
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-            {sites.length >= 1 ? (
-              sites.map((site) => <PageItem key={site.id} site={site} />)
-            ) : (
-              <p className="mt-4 text-center text-muted-foreground">
-                It&apos;s pretty empty in here, create a site to get started.
+          {sites.length >= 1 ? (
+            <SiteListClient sites={sites} />
+          ) : (
+            <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-3xl p-12 text-center bg-card shadow-sm space-y-4">
+              <p className="text-muted-foreground text-sm max-w-sm">
+                It&apos;s pretty empty in here. Create your first worried-free premium site to get started with Varityweb!
               </p>
-            )}
-          </div>
+              <NewSiteModal />
+            </div>
+          )}
         </div>
       </div>
     </div>
