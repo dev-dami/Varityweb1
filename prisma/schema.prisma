@@ -83,10 +83,11 @@ model Page {
   visible      Boolean @default(false)
   content      String?
   subdomain    String  @unique
-  posts        BlogPost[]
   collections  Collection[]
   products     Product[]
   orders       Order[]
+  integrations Integration[]
+  submissions  FormSubmission[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -95,19 +96,29 @@ model Page {
   @@map("page")
 }
 
-model BlogPost {
+model Integration {
   id        String   @id @default(cuid())
   pageId    String
   page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
-  title     String
-  slug      String
-  content   String?
-  image     String?
+  type      String   // "webhook", "email", "whatsapp"
+  target    String   // webhook URL, email address, or phone number
+  active    Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([pageId, slug])
-  @@map("blog_post")
+  @@index([pageId])
+  @@map("integration")
+}
+
+model FormSubmission {
+  id        String   @id @default(cuid())
+  pageId    String
+  page      Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  data      Json     // e.g. { name: "...", email: "...", message: "..." }
+  createdAt DateTime @default(now())
+
+  @@index([pageId])
+  @@map("form_submission")
 }
 
 model Collection {

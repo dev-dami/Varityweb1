@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Tabs, TabsContent } from "@radix-ui/react-tabs";
 import ComponentsTab from "./tabs/components-tab";
-import { Layers, PlusIcon, SidebarOpenIcon, Database } from "lucide-react";
+import { Layers, PlusIcon, SidebarOpenIcon, Webhook } from "lucide-react";
 import TabList from "./tabs/index";
 import LayersTab from "./tabs/layers-tab";
 import CMSTab from "./tabs/cms-tab";
@@ -41,7 +41,7 @@ const LeftSidebar = () => {
                 },
                 {
                   value: "cms",
-                  icon: <Database className="w-4 h-4" />,
+                  icon: <Webhook className="w-4 h-4" />,
                 },
               ]}
             />
@@ -66,22 +66,12 @@ const LeftSidebar = () => {
               </SidebarGroupContent>
             </TabsContent>
             <TabsContent value="cms">
-              <SidebarGroupLabel>CMS Content</SidebarGroupLabel>
+              <SidebarGroupLabel>Forms</SidebarGroupLabel>
               <SidebarGroupContent className="p-0 max-h-[calc(100vh-95px)] overflow-y-auto">
                 <CMSTab />
               </SidebarGroupContent>
             </TabsContent>
           </SidebarGroup>
-          {!open && (
-            <SidebarGroupAction>
-              <SidebarOpenIcon
-                className="text-muted-foreground"
-                onClick={() => {
-                  setOpen(!open);
-                }}
-              />
-            </SidebarGroupAction>
-          )}
         </Tabs>
       </SidebarContent>
     </Sidebar>

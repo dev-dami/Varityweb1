@@ -15,6 +15,7 @@ import {
   Pilcrow,
   SquareDashed,
   Text,
+  Mail,
 } from "lucide-react";
 
 export const elements: {
@@ -116,10 +117,10 @@ export const elements: {
     icon: Link,
   },
   {
-    label: "CMS Collection List",
+    label: "Contact Form",
     id: "cms-list",
     group: "element",
     category: "Basic",
-    icon: Database,
+    icon: Mail,
   },
 ];
