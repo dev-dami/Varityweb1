@@ -52,7 +52,7 @@ export default function LandingPage() {
               <img 
                 src="/varityweb.png" 
                 alt="Varityweb Logo" 
-                className="size-8 object-contain"
+                className="size-8 object-contain invert"
               />
               <span className="font-bold text-lg tracking-tight text-white">
                 Varityweb

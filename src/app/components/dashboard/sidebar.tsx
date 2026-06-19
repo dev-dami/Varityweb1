@@ -77,7 +77,7 @@ const AppSidebar = () => {
                 <img 
                   src="/varityweb.png" 
                   alt="Logo" 
-                  className="size-full object-contain"
+                  className="size-full object-contain dark:invert"
                 />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">

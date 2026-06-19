@@ -49,7 +49,7 @@ export default function LoginPage() {
         onSuccess: () => {
           setLoading(false);
           toast.success("Welcome back!");
-          router.push("/dashboard");
+          router.push("/");
         },
         onError: (ctx) => {
           setLoading(false);
@@ -78,7 +78,7 @@ export default function LoginPage() {
         onSuccess: () => {
           setLoading(false);
           toast.success("Account created successfully!");
-          router.push("/dashboard");
+          router.push("/");
         },
         onError: (ctx) => {
           setLoading(false);
@@ -93,7 +93,7 @@ export default function LoginPage() {
     try {
       await authClient.signIn.social({
         provider,
-        callbackURL: "/dashboard",
+        callbackURL: "/",
       });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Authentication failed");
@@ -112,7 +112,7 @@ export default function LoginPage() {
             <img 
               src="/varityweb.png" 
               alt="Varityweb Logo" 
-              className="size-full object-contain"
+              className="size-full object-contain dark:invert"
             />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground mt-4">Varityweb</h1>
