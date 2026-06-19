@@ -51,53 +51,6 @@ async function DashboardOverview() {
             </div>
           </div>
 
-          {/* Key Metrics Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            <Card className="bg-card border-border hover:border-primary/45 transition-colors shadow-sm">
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Total Sites</CardTitle>
-                <Globe className="size-4 text-primary" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{allSitesCount}</div>
-                <p className="text-xs text-muted-foreground mt-1">Active published domains</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/45 transition-colors shadow-sm">
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Total Views</CardTitle>
-                <TrendingUp className="size-4 text-green-500" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{totalViews.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground mt-1">+12% traffic this week</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/45 transition-colors shadow-sm">
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Avg. Load Speed</CardTitle>
-                <Cpu className="size-4 text-blue-500" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{avgLoadTime}</div>
-                <p className="text-xs text-muted-foreground mt-1">Optimized local network</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card border-border hover:border-primary/45 transition-colors shadow-sm">
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Platform Health</CardTitle>
-                <Activity className="size-4 text-amber-500 animate-pulse" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">100%</div>
-                <p className="text-xs text-muted-foreground mt-1">Managed servers operational</p>
-              </CardContent>
-            </Card>
-          </div>
-
           <div className="flex flex-col space-y-6">
             
             {/* Recent Sites Activity */}

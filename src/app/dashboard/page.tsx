@@ -1,5 +1,5 @@
 import React from "react";
-import { SessionNavBar } from "@/components/ui/sidebar";
+import AppSidebar from "../components/dashboard/sidebar";
 import SiteList from "../components/dashboard/site-list";
 import DashboardOverview from "../components/dashboard/dashboard-overview";
 import DashboardAnalytics from "../components/dashboard/dashboard-analytics";
@@ -28,8 +28,8 @@ const Dashboard = async ({
   return (
     <SidebarProvider>
       <div className="flex w-screen h-screen">
-        <SessionNavBar />
-        <main className="flex-1 overflow-y-auto pl-[3.05rem] bg-background">
+        <AppSidebar />
+        <main className="flex-1 overflow-y-auto bg-background">
           {tab === "overview" && <DashboardOverview />}
           {tab === "sites" && <SiteList />}
           {tab === "analytics" && <DashboardAnalytics />}
