@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { EditorElement } from "@/app/providers/editor-provider";
+import { EditorElement, useEditor } from "@/app/providers/editor-provider";
 import { createSubmission } from "@/lib/actions/integrations";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
