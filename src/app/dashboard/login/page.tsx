@@ -108,7 +108,7 @@ export default function LoginPage() {
 
       <div className="w-full max-w-[420px] z-10 space-y-6">
         <div className="flex flex-col items-center space-y-2 text-center">
-          <div className="flex aspect-square size-12 items-center justify-center rounded-xl border border-border bg-card overflow-hidden">
+          <div className="flex aspect-square size-12 items-center justify-center overflow-hidden">
             <img 
               src="/varityweb.png" 
               alt="Varityweb Logo" 

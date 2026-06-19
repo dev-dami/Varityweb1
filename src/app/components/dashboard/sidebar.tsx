@@ -73,7 +73,7 @@ const AppSidebar = () => {
         <SidebarGroup>
           <div className="flex justify-between">
             <div className="flex flex-row space-x-2">
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg border border-border bg-card overflow-hidden">
+              <div className="flex aspect-square size-8 items-center justify-center overflow-hidden">
                 <img 
                   src="/varityweb.png" 
                   alt="Logo" 
