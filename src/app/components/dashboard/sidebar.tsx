@@ -15,7 +15,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -38,10 +38,10 @@ import {
 import { useTheme } from "next-themes";
 
 const items = [
-  { title: "Overview", url: "#", icon: LayoutDashboard },
-  { title: "Sites", url: "#", icon: Globe },
-  { title: "Analytics", url: "#", icon: ChartLine },
-  { title: "Settings", url: "#", icon: Settings },
+  { title: "Overview", url: "/?tab=overview", icon: LayoutDashboard, value: "overview" },
+  { title: "Sites", url: "/?tab=sites", icon: Globe, value: "sites" },
+  { title: "Analytics", url: "/?tab=analytics", icon: ChartLine, value: "analytics" },
+  { title: "Settings", url: "/?tab=settings", icon: Settings, value: "settings" },
 ];
 
 const externalLinks = [
@@ -56,6 +56,8 @@ const AppSidebar = () => {
   const { theme, setTheme } = useTheme();
   const { data: session, isPending } = authClient.useSession();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const activeTab = searchParams.get("tab") || "overview";
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -112,16 +114,19 @@ const AppSidebar = () => {
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items.map((item) => {
+                const isActive = activeTab === item.value;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <a href={item.url} className={isActive ? "text-primary font-medium" : ""}>
+                        <item.icon className={isActive ? "text-primary scale-110 transition-transform" : ""} />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
