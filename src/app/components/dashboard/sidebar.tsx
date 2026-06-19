@@ -48,15 +48,8 @@ import { Badge } from "@/components/ui/badge";
 const items = [
   { title: "Dashboard", url: "/dashboard?tab=overview", icon: LayoutDashboard, value: "overview" },
   { title: "Sites", url: "/dashboard?tab=sites", icon: Globe, value: "sites" },
-  { title: "Reports", url: "/dashboard?tab=reports", icon: FileText, value: "reports" },
   { title: "Analytics", url: "/dashboard?tab=analytics", icon: BarChart, value: "analytics" },
-  { title: "Chat", url: "/dashboard?tab=chat", icon: MessagesSquare, value: "chat", beta: true },
-  { title: "Deals", url: "/dashboard?tab=deals", icon: Layout, value: "deals" },
-  { title: "Accounts", url: "/dashboard?tab=accounts", icon: UserCircle, value: "accounts" },
-  { title: "Competitors", url: "/dashboard?tab=competitors", icon: UserSearch, value: "competitors" },
-  { title: "Knowledge Base", url: "/dashboard?tab=knowledge", icon: GraduationCap, value: "knowledge" },
-  { title: "Feedback", url: "/dashboard?tab=feedback", icon: MessageSquareText, value: "feedback" },
-  { title: "Document Review", url: "/dashboard?tab=review", icon: FileClock, value: "review" },
+  { title: "Settings", url: "/dashboard?tab=settings", icon: Settings, value: "settings" },
 ];
 
 const AppSidebar = () => {
@@ -131,12 +124,12 @@ const AppSidebar = () => {
                           <item.icon className={isActive ? "text-primary scale-110 transition-transform" : ""} />
                           <span>{item.title}</span>
                         </div>
-                        {item.beta && (
+                        {('beta' in item && (item as any).beta) && (
                           <Badge
                             className="flex h-fit w-fit items-center gap-1.5 rounded border-none bg-blue-50 px-1.5 text-[10px] text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-semibold uppercase"
                             variant="outline"
                           >
-                            BETA
+                            Beta
                           </Badge>
                         )}
                       </a>

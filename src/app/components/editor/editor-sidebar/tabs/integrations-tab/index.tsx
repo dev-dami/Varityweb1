@@ -41,7 +41,7 @@ export default function IntegrationsTab() {
   const [dialogOpen, setDialogOpen] = useState(false);
   
   // New Integration Fields
-  const [intType, setIntType] = useState("webhook");
+  const [intType, setIntType] = useState("mailchimp");
   const [intTarget, setIntTarget] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -137,10 +137,12 @@ export default function IntegrationsTab() {
 
   const getIcon = (type: string) => {
     switch (type) {
-      case "webhook": return <Webhook className="w-4 h-4 text-blue-500" />;
+      case "mailchimp": return <Mail className="w-4 h-4 text-yellow-500" />;
+      case "slack": return <MessageSquare className="w-4 h-4 text-purple-500" />;
+      case "sheets": return <Database className="w-4 h-4 text-green-500" />;
       case "email": return <Mail className="w-4 h-4 text-amber-500" />;
       case "whatsapp": return <MessageSquare className="w-4 h-4 text-emerald-500" />;
-      default: return <Database className="w-4 h-4 text-zinc-500" />;
+      default: return <Webhook className="w-4 h-4 text-blue-500" />;
     }
   };
 
@@ -171,15 +173,19 @@ export default function IntegrationsTab() {
                       <SelectValue placeholder="Select type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="webhook">Outgoing Webhook (JSON POST)</SelectItem>
-                      <SelectItem value="email">Email Notification Alert</SelectItem>
-                      <SelectItem value="whatsapp">WhatsApp Text Warning</SelectItem>
+                      <SelectItem value="mailchimp">Mailchimp</SelectItem>
+                      <SelectItem value="sheets">Google Sheets</SelectItem>
+                      <SelectItem value="slack">Slack Channel</SelectItem>
+                      <SelectItem value="email">Email Notification</SelectItem>
+                      <SelectItem value="whatsapp">WhatsApp Notification</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="int-target" className="text-xs font-semibold text-[#1d2327]">
-                    {intType === "webhook" && "Webhook Destination URL"}
+                    {intType === "mailchimp" && "Mailchimp API Key"}
+                    {intType === "sheets" && "Google Sheets Webhook URL"}
+                    {intType === "slack" && "Slack Webhook URL"}
                     {intType === "email" && "Notification Email Address"}
                     {intType === "whatsapp" && "WhatsApp Phone Number (with code)"}
                   </Label>
@@ -187,7 +193,9 @@ export default function IntegrationsTab() {
                     id="int-target"
                     className="border-gray-300 shadow-inner"
                     placeholder={
-                      intType === "webhook" ? "https://api.yourdomain.com/webhook" :
+                      intType === "mailchimp" ? "e.g. 1234567890-us1" :
+                      intType === "sheets" ? "e.g. https://script.google.com/macros/s/..." :
+                      intType === "slack" ? "e.g. https://hooks.slack.com/services/..." :
                       intType === "email" ? "alerts@company.com" : "+2348030000000"
                     }
                     value={intTarget}

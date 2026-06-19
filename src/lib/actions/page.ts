@@ -6,12 +6,15 @@ import { headers } from "next/headers";
 import { Page } from "@prisma/client";
 import { revalidateTag, unstable_cache } from "next/cache";
 
+import { blankTemplate, ecommerceTemplate, blogTemplate } from "@/lib/templates";
+
 type SiteProps = {
   title: string;
   subdomain: string;
+  template?: "blank" | "ecommerce" | "blog";
 };
 
-export async function createSite({ title, subdomain }: SiteProps) {
+export async function createSite({ title, subdomain, template = "blank" }: SiteProps) {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -41,9 +44,13 @@ export async function createSite({ title, subdomain }: SiteProps) {
     return { success: false, msg: "Subdomain is already in use" };
   }
 
+  let content = blankTemplate;
+  if (template === "ecommerce") content = ecommerceTemplate;
+  if (template === "blog") content = blogTemplate;
+
   try {
     const site = await db.page.create({
-      data: { userId: userId, title: title, subdomain: subdomain },
+      data: { userId: userId, title: title, subdomain: subdomain, content: content },
     });
     return { success: true, site: site };
   } catch (error) {

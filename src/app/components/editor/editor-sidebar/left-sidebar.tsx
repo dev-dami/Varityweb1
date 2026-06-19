@@ -16,7 +16,7 @@ import ComponentsTab from "./tabs/components-tab";
 import { Layers, PlusIcon, SidebarOpenIcon, Webhook } from "lucide-react";
 import TabList from "./tabs/index";
 import LayersTab from "./tabs/layers-tab";
-import CMSTab from "./tabs/cms-tab";
+import IntegrationsTab from "./tabs/integrations-tab";
 
 const LeftSidebar = () => {
   const { state } = useEditor();
@@ -40,7 +40,7 @@ const LeftSidebar = () => {
                   icon: <Layers className="w-4 h-4" />,
                 },
                 {
-                  value: "cms",
+                  value: "integrations",
                   icon: <Webhook className="w-4 h-4" />,
                 },
               ]}
@@ -65,10 +65,10 @@ const LeftSidebar = () => {
                 <LayersTab />
               </SidebarGroupContent>
             </TabsContent>
-            <TabsContent value="cms">
-              <SidebarGroupLabel>Forms</SidebarGroupLabel>
+            <TabsContent value="integrations">
+              <SidebarGroupLabel>Integrations</SidebarGroupLabel>
               <SidebarGroupContent className="p-0 max-h-[calc(100vh-95px)] overflow-y-auto">
-                <CMSTab />
+                <IntegrationsTab />
               </SidebarGroupContent>
             </TabsContent>
           </SidebarGroup>

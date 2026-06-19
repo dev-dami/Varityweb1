@@ -2,6 +2,13 @@
 
 import type React from "react";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,6 +50,7 @@ export default function NewPageModal() {
     defaultValues: {
       title: "",
       subdomain: "",
+      template: "blank",
     },
   });
 
@@ -114,6 +122,28 @@ export default function NewPageModal() {
                       </div>
                     </div>
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="template"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Starting Template</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a template" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="blank">Blank Site</SelectItem>
+                      <SelectItem value="ecommerce">E-Commerce Store</SelectItem>
+                      <SelectItem value="blog">Personal Blog</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
