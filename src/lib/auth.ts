@@ -11,7 +11,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: {
+    allowedHosts: [
+      "localhost:3000",
+      "app.localhost:3000",
+      "editor.localhost:3000",
+      rootDomain,
+      `app.${rootDomain}`,
+      `editor.${rootDomain}`,
+      `*.localhost:3000`,
+      `*.${rootDomain}`,
+    ],
+  },
   trustedOrigins: [
     "http://localhost:3000",
     "http://*.localhost:3000",
@@ -21,6 +32,7 @@ export const auth = betterAuth({
   advanced: {
     crossSubDomainCookies: {
       enabled: process.env.NODE_ENV === "production",
+      domain: process.env.NODE_ENV === "production" ? `.${rootDomain}` : undefined,
     },
   },
 });
