@@ -49,7 +49,7 @@ export default function LoginPage() {
         onSuccess: () => {
           setLoading(false);
           toast.success("Welcome back!");
-          router.push("/");
+          window.location.href = "/";
         },
         onError: (ctx) => {
           setLoading(false);
@@ -78,7 +78,7 @@ export default function LoginPage() {
         onSuccess: () => {
           setLoading(false);
           toast.success("Account created successfully!");
-          router.push("/");
+          window.location.href = "/";
         },
         onError: (ctx) => {
           setLoading(false);
