@@ -98,36 +98,36 @@ async function DashboardOverview() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex flex-col space-y-6">
             
             {/* Recent Sites Activity */}
-            <div className="md:col-span-2 space-y-4">
+            <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-bold">Recent Sites</h3>
-                <Link href="/?tab=sites" className="text-xs font-semibold text-primary hover:underline flex items-center gap-1">
-                  View All <ArrowRight className="size-3" />
+                <Link href="/?tab=sites" className="text-sm font-semibold text-primary hover:underline flex items-center gap-1">
+                  View All <ArrowRight className="size-4" />
                 </Link>
               </div>
 
-              <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {sites.length >= 1 ? (
                   sites.map((site) => (
-                    <Card key={site.id} className="bg-card border-border hover:border-primary/20 transition-all p-4 flex items-center justify-between gap-4 shadow-sm">
-                      <div className="flex items-center space-x-4 min-w-0">
-                        <div className="size-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                          <Globe className="size-5 text-primary" />
+                    <Card key={site.id} className="bg-card border-border hover:border-primary/40 transition-all p-5 flex flex-col justify-between shadow-sm min-h-[160px] group">
+                      <div className="flex items-start justify-between">
+                        <div className="space-y-1.5 min-w-0">
+                          <h4 className="font-semibold text-base truncate pr-4">{site.title}</h4>
+                          <p className="text-sm text-muted-foreground truncate">{site.subdomain}.varityweb.com</p>
                         </div>
-                        <div className="min-w-0">
-                          <h4 className="font-semibold text-sm truncate">{site.title}</h4>
-                          <p className="text-xs text-muted-foreground truncate">{site.subdomain}.varityweb.com</p>
+                        <div className="size-8 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <Globe className="size-4 text-primary" />
                         </div>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <Button asChild variant="outline" size="sm" className="h-8">
-                          <a href={getLink({ subdomain: "editor", pathName: site.id })}>Edit</a>
+                      <div className="flex items-center gap-3 pt-6 mt-auto">
+                        <Button asChild variant="default" size="sm" className="h-8 w-full font-medium">
+                          <a href={getLink({ subdomain: "editor", pathName: site.id })}>Edit Site</a>
                         </Button>
-                        <Button asChild variant="ghost" size="sm" className="h-8 text-primary hover:text-primary">
+                        <Button asChild variant="outline" size="sm" className="h-8 w-full group-hover:border-primary/30">
                           <a href={getLink({ subdomain: site.subdomain })} target="_blank" rel="noreferrer">
                             Visit
                           </a>
@@ -136,29 +136,13 @@ async function DashboardOverview() {
                     </Card>
                   ))
                 ) : (
-                  <Card className="bg-card border-dashed border-border py-12 text-center">
-                    <p className="text-sm text-muted-foreground">No sites created yet. Let&apos;s build one!</p>
+                  <Card className="col-span-full bg-card border-dashed border-border py-16 text-center shadow-sm">
+                    <p className="text-sm text-muted-foreground mb-4">No sites created yet. Let&apos;s build one!</p>
+                    <NewSiteModal />
                   </Card>
                 )}
               </div>
             </div>
-
-            {/* Quick Tips Box */}
-            <Card className="bg-gradient-to-b from-card to-muted/20 border-border p-6 flex flex-col justify-between shadow-sm">
-              <div className="space-y-4">
-                <div className="flex items-center space-x-2 text-primary">
-                  <Sparkles className="size-5" />
-                  <span className="font-bold text-sm uppercase tracking-wide">Design Tip</span>
-                </div>
-                <h4 className="font-semibold text-sm">Interactive Hover Experiences</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  Varityweb landing page uses a custom gooey pixel engine. Drag your mouse over the background to experience it! Dynamic visual assets significantly boost user engagement.
-                </p>
-              </div>
-              <Button asChild size="sm" variant="secondary" className="w-full mt-6 text-xs">
-                <Link href="/?tab=settings">Configure Profile</Link>
-              </Button>
-            </Card>
 
           </div>
 

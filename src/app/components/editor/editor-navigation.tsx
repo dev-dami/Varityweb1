@@ -123,7 +123,7 @@ const EditorNavigation = ({ siteDetails }: Props) => {
       }`}
     >
       <aside className="flex items-center gap-4 max-w-[260px] w-[300px]">
-        <Link href={getLink({})}>
+        <Link href={getLink({ subdomain: "app" })}>
           <Button variant={"ghost"} size={"icon"}>
             <ChevronLeft />
           </Button>

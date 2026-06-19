@@ -40,16 +40,7 @@ import { useTheme } from "next-themes";
 const items = [
   { title: "Overview", url: "/?tab=overview", icon: LayoutDashboard, value: "overview" },
   { title: "Sites", url: "/?tab=sites", icon: Globe, value: "sites" },
-  { title: "Analytics", url: "/?tab=analytics", icon: ChartLine, value: "analytics" },
   { title: "Settings", url: "/?tab=settings", icon: Settings, value: "settings" },
-];
-
-const externalLinks = [
-  {
-    title: "Visit Varityweb",
-    href: "https://varityweb.com",
-    icon: Globe,
-  },
 ];
 
 const AppSidebar = () => {
@@ -127,31 +118,6 @@ const AppSidebar = () => {
                   </SidebarMenuItem>
                 );
               })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {externalLinks.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="justify-between w-full"
-                      data-umami-event="social-GitHub"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <item.icon className="w-4 h-4" />
-                        <span>{item.title}</span>
-                      </div>
-                      <MoveUpRight />
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
