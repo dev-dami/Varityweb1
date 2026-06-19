@@ -1,6 +1,6 @@
 "use client";
 
-import AppSidebar from "../app/components/dashboard/sidebar"
+import AppSidebar from "@/app/components/dashboard/sidebar"
 
 export function SidebarDemo() {
   return (
